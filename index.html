@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <title>BuildQuote — Free Price Quote & Estimate Generator | Create PDF Quotes Online</title>
+  <meta name="description" content="Generate professional PDF price quotes and estimates for free. Fill in your details, add line items, preview live, and download instantly. No signup required.">
+  <meta name="keywords" content="free quote generator, estimate maker, price quote template, estimate generator, PDF quote, quote maker online, free estimate generator">
+  <meta name="author" content="BuildQuote">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://buildquote.co/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6010936774105671" crossorigin="anonymous"></script>
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="BuildQuote">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="BuildQuote — Free Price Quote & Estimate Generator">
+  <meta property="og:description" content="Generate professional PDF price quotes and estimates for free. No signup required.">
+  <meta property="og:url" content="https://buildquote.co/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://buildquote.co/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BuildQuote — Free Price Quote Generator">
+  <meta name="twitter:description" content="Create professional PDF price quotes and estimates instantly. Free, no signup.">
+  <meta name="twitter:image" content="https://buildquote.co/og-image.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "BuildQuote",
+    "url": "https://buildquote.co",
+    "description": "Free online price quote and estimate generator. Create professional PDF quotes from structured data. No signup required.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": [
+      "Generate PDF price quotes instantly",
+      "Live preview as you type",
+      "Acceptance signature lines",
+      "Valid-until expiry date",
+      "Tax and discount support",
+      "Custom accent color",
+      "No signup required",
+      "REST API for developers"
+    ],
+    "creator": { "@type": "Organization", "name": "BuildQuote", "url": "https://buildquote.co" }
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" class="navbar-brand">💼 BuildQuote</a>
+    <div class="navbar-links">
+      <a href="/api/docs">API Docs</a>
+      <a href="/about.html">About</a>
+    </div>
+  </nav>
+
+  <section class="hero-banner">
+    <h1>Free Price Quote Generator</h1>
+    <p>Create professional PDF estimates instantly. Fill in the form, preview live, download — no signup needed.</p>
+  </section>
+
+  <main class="app-container">
+
+    <!-- ── FORM PANEL ── -->
+    <div class="form-panel" id="formPanel">
+
+      <!-- Your Info -->
+      <div class="form-section">
+        <div class="form-section-header"><h3>📋 Your Information</h3></div>
+        <div class="form-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fromName">Company / Your Name *</label>
+              <input type="text" id="fromName" placeholder="Acme Contracting" required>
+            </div>
+            <div class="form-group">
+              <label for="fromEmail">Email</label>
+              <input type="email" id="fromEmail" placeholder="quotes@acme.com">
+            </div>
+          </div>
+          <div class="form-row full">
+            <div class="form-group">
+              <label for="fromStreet">Street Address</label>
+              <input type="text" id="fromStreet" placeholder="123 Main St">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fromCity">City</label>
+              <input type="text" id="fromCity" placeholder="Austin">
+            </div>
+            <div class="form-group">
+              <label for="fromState">State</label>
+              <input type="text" id="fromState" placeholder="TX" maxlength="2">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fromPhone">Phone</label>
+              <input type="tel" id="fromPhone" placeholder="(555) 123-4567">
+            </div>
+            <div class="form-group">
+              <label for="accentColor">Accent Color</label>
+              <div class="color-row">
+                <input type="color" id="accentColor" value="#4F46E5">
+                <input type="text" id="accentColorHex" value="#4F46E5" style="flex:1" readonly>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Client Info -->
+      <div class="form-section">
+        <div class="form-section-header"><h3>👤 Prepared For</h3></div>
+        <div class="form-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="toName">Client Name *</label>
+              <input type="text" id="toName" placeholder="Jane Smith" required>
+            </div>
+            <div class="form-group">
+              <label for="toEmail">Client Email</label>
+              <input type="email" id="toEmail" placeholder="jane@client.com">
+            </div>
+          </div>
+          <div class="form-row full">
+            <div class="form-group">
+              <label for="toStreet">Street Address</label>
+              <input type="text" id="toStreet" placeholder="456 Oak Ave">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="toCity">City</label>
+              <input type="text" id="toCity" placeholder="Denver">
+            </div>
+            <div class="form-group">
+              <label for="toState">State / ZIP</label>
+              <input type="text" id="toState" placeholder="CO 80202">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quote Details -->
+      <div class="form-section">
+        <div class="form-section-header"><h3>📄 Quote Details</h3></div>
+        <div class="form-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="quoteNumber">Quote Number</label>
+              <input type="text" id="quoteNumber" placeholder="QTE-001" value="QTE-001">
+            </div>
+            <div class="form-group">
+              <label for="currency">Currency Symbol</label>
+              <input type="text" id="currency" placeholder="$" value="$" maxlength="3">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="quoteDate">Quote Date</label>
+              <input type="date" id="quoteDate">
+            </div>
+            <div class="form-group">
+              <label for="validUntil">Valid Until</label>
+              <input type="date" id="validUntil">
+            </div>
+          </div>
+          <div class="form-row full">
+            <div class="form-group">
+              <label for="projectName">Project / Job Name (optional)</label>
+              <input type="text" id="projectName" placeholder="Kitchen Renovation">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Line Items -->
+      <div class="form-section">
+        <div class="form-section-header"><h3>🛒 Line Items</h3></div>
+        <div class="line-items-header">
+          <span>Description</span><span>Qty</span><span>Rate</span><span>Amount</span><span></span>
+        </div>
+        <div id="lineItems"></div>
+        <button type="button" class="btn-add-item" id="btnAddItem">+ Add Line Item</button>
+      </div>
+
+      <!-- Tax & Discount -->
+      <div class="form-section">
+        <div class="form-section-header"><h3>💰 Tax & Discount</h3></div>
+        <div class="form-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="taxRate">Tax Rate (%)</label>
+              <input type="number" id="taxRate" placeholder="0" value="0" min="0" max="100" step="0.01">
+            </div>
+            <div class="form-group">
+              <label for="discount">Discount ($)</label>
+              <input type="number" id="discount" placeholder="0" value="0" min="0" step="0.01">
+            </div>
+          </div>
+          <div class="totals-display" id="totalsDisplay">
+            <div class="totals-row"><span>Subtotal</span><span id="dispSubtotal">$0.00</span></div>
+            <div class="totals-row"><span>Tax</span><span id="dispTax">$0.00</span></div>
+            <div class="totals-row"><span>Discount</span><span id="dispDiscount">-$0.00</span></div>
+            <div class="totals-row total"><span>Estimate Total</span><span id="dispTotal">$0.00</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div class="form-section">
+        <div class="form-section-header"><h3>📝 Notes & Terms</h3></div>
+        <div class="form-body">
+          <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea id="notes" rows="2" placeholder="This estimate is based on a site visit on [date]. Final costs may vary based on materials."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="terms">Terms & Conditions</label>
+            <textarea id="terms" rows="2" placeholder="50% deposit required to begin work. Balance due upon completion."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn-download" id="btnDownload">⬇ Download Quote PDF</button>
+
+    </div>
+
+    <!-- ── PREVIEW PANEL ── -->
+    <div class="preview-panel" id="previewPanel">
+      <div class="preview-header">
+        <h3>📄 Live Preview</h3>
+        <span class="preview-badge">Updates as you type</span>
+      </div>
+      <div class="preview-body" id="previewBody"></div>
+    </div>
+
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- ── SEO Content ── -->
+  <section style="max-width:860px;margin:3rem auto;padding:0 1.5rem 1rem;">
+    <h2 style="font-size:1.3rem;font-weight:700;color:var(--text-primary);margin-bottom:1.5rem;border-bottom:1px solid var(--border);padding-bottom:0.5rem;">Why Use BuildQuote?</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;margin-bottom:2.5rem;">
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;">
+        <div style="font-size:1.5rem;margin-bottom:0.5rem;">⚡</div>
+        <h3 style="color:var(--text-primary);font-size:0.95rem;font-weight:700;margin-bottom:0.4rem;">Ready in Seconds</h3>
+        <p style="color:var(--text-secondary);font-size:0.85rem;line-height:1.6;">Fill in your details and download a professional PDF estimate immediately. No design skills required.</p>
+      </div>
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;">
+        <div style="font-size:1.5rem;margin-bottom:0.5rem;">✍️</div>
+        <h3 style="color:var(--text-primary);font-size:0.95rem;font-weight:700;margin-bottom:0.4rem;">Acceptance Signature</h3>
+        <p style="color:var(--text-secondary);font-size:0.85rem;line-height:1.6;">Every quote includes a signature block for client sign-off — making your estimate a professional document clients can approve on the spot.</p>
+      </div>
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;">
+        <div style="font-size:1.5rem;margin-bottom:0.5rem;">📅</div>
+        <h3 style="color:var(--text-primary);font-size:0.95rem;font-weight:700;margin-bottom:0.4rem;">Valid-Until Date</h3>
+        <p style="color:var(--text-secondary);font-size:0.85rem;line-height:1.6;">Set an expiry date on your estimate. BuildQuote highlights it prominently so clients know to act before pricing changes.</p>
+      </div>
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;">
+        <div style="font-size:1.5rem;margin-bottom:0.5rem;">🔗</div>
+        <h3 style="color:var(--text-primary);font-size:0.95rem;font-weight:700;margin-bottom:0.4rem;">Pairs with BuildInvoice</h3>
+        <p style="color:var(--text-secondary);font-size:0.85rem;line-height:1.6;">Once the client approves your quote, convert it to an invoice with <a href="https://buildinvoice.co" style="color:var(--accent);">BuildInvoice</a> — the complete business document workflow.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <div style="max-width:860px;margin:0 auto 1.25rem;padding:0 1.5rem;">
+      <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-bottom:0.6rem;">Also from the Build ecosystem</p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+        <a href="https://buildpdf.co" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 0.85rem;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;font-size:0.8rem;color:var(--text-secondary);text-decoration:none;">📄 <strong style="color:var(--text-primary);">BuildPDF</strong> — Free file-to-PDF converter</a>
+        <a href="https://buildinvoice.co" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 0.85rem;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;font-size:0.8rem;color:var(--text-secondary);text-decoration:none;">⚡ <strong style="color:var(--text-primary);">BuildInvoice</strong> — Free PDF invoice generator</a>
+        <a href="https://buildcertificates.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 0.85rem;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;font-size:0.8rem;color:var(--text-secondary);text-decoration:none;">🏅 <strong style="color:var(--text-primary);">BuildCertificates</strong> — Free certificate generator</a>
+      </div>
+    </div>
+    <p>© 2026 BuildQuote · <a href="/api/docs">API Docs</a> · <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+  </footer>
+
+  <script src="quote-app.js"></script>
+</body>
+</html>
