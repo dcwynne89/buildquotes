@@ -1,5 +1,5 @@
-/* ============================================================
-   quote-app.js — Consumer site logic for BuildQuote
+﻿/* ============================================================
+   quote-app.js — Consumer site logic for BuildQuotes
    Manages form state, live preview, and PDF download
    ============================================================ */
 
@@ -11,7 +11,7 @@ async function getOrCreateGuestKey() {
   let key = localStorage.getItem(GUEST_KEY_STORAGE);
   if (key && key.startsWith("bqte_")) return key;
 
-  const email = `guest_${Date.now()}_${Math.random().toString(36).slice(2)}@buildquote.co`;
+  const email = `guest_${Date.now()}_${Math.random().toString(36).slice(2)}@buildquotes.co`;
   try {
     const res  = await fetch(`${API_BASE}/register`, {
       method: "POST",

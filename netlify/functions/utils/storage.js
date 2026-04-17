@@ -1,6 +1,6 @@
-/* ============================================================
+﻿/* ============================================================
    storage.js — Netlify Blobs for API keys & usage
-   BuildQuote — bqte_ prefix, quote tier quotas
+   BuildQuotes — bqte_ prefix, quote tier quotas
    ============================================================ */
 
 const { getStore } = require("@netlify/blobs");

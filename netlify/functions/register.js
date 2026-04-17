@@ -1,4 +1,4 @@
-/* register.js — POST /api/v1/register */
+﻿/* register.js — POST /api/v1/register */
 const { jsonResponse, errorResponse, CORS_HEADERS } = require("./utils/auth");
 const { registerKey, emailHasKey, checkRegistrationLimit, recordRegistrationAttempt } = require("./utils/storage");
 
@@ -31,6 +31,6 @@ exports.handler = async (event) => {
     tier: "free",
     quota: { quotes_per_month: 25 },
     message: "Save your API key — it won't be shown again.",
-    docs: "https://buildquote.co/api/docs",
+    docs: "https://buildquotes.co/api/docs",
   });
 };

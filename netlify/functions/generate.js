@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    generate.js — Quote generation endpoint
    POST /api/v1/generate
    ============================================================ */
@@ -44,7 +44,7 @@ exports.handler = async (event) => {
 
   if (from.logo && !auth.tier.logoEnabled) {
     return errorResponse(403, "Logo embedding requires Starter plan or above.", {
-      currentTier: auth.tier.name, upgrade: "https://buildquote.co/api/docs#pricing",
+      currentTier: auth.tier.name, upgrade: "https://buildquotes.co/api/docs#pricing",
     });
   }
 
@@ -87,7 +87,7 @@ exports.handler = async (event) => {
         limit:     auth.quota.limit,
         remaining: auth.quota.remaining - 1,
       },
-      powered_by: "https://buildquote.co",
+      powered_by: "https://buildquotes.co",
     });
   } catch (err) {
     console.error("Quote generation error:", err);

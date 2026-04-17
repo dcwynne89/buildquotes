@@ -1,5 +1,5 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://buildquote.co/sitemap.xml
+Sitemap: https://buildquotes.co/sitemap.xml

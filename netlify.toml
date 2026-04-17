@@ -1,5 +1,5 @@
-# ── BuildQuote · netlify.toml ──────────────────────────────────────────────────
-# Canonical: https://buildquote.co
+﻿# ── BuildQuotes · netlify.toml ──────────────────────────────────────────────────
+# Canonical: https://buildquotes.co
 
 [functions]
   directory = "netlify/functions"

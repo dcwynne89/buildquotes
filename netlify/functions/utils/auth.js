@@ -1,6 +1,6 @@
-/* ============================================================
+﻿/* ============================================================
    auth.js — Authentication & rate-limiting middleware
-   BuildQuote — adapted from BuildInvoice
+   BuildQuotes — adapted from BuildInvoice
    ============================================================ */
 
 const { validateKey, checkQuota, incrementUsage } = require("./storage");
@@ -65,7 +65,7 @@ async function authenticate(event, options = {}) {
       response: errorResponse(429, "Monthly quote limit reached.", {
         used: quota.used, limit: quota.limit,
         resetsAt: nextMonthStart(),
-        upgrade: "https://buildquote.co/api/docs#pricing",
+        upgrade: "https://buildquotes.co/api/docs#pricing",
       }),
     };
   }
