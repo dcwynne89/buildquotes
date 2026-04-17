@@ -1,13 +1,13 @@
-﻿# ── BuildQuotes · netlify.toml ──────────────────────────────────────────────────
+# ── BuildQuotes · netlify.toml ──────────────────────────────────────────────────
 # Canonical: https://buildquotes.co
 
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
-
-[functions."generate"]
-  external_node_modules = ["pdfmake"]
   included_files = ["node_modules/pdfmake/**"]
+
+[functions.generate]
+  external_node_modules = ["pdfmake"]
 
 # ── API Route Redirects ───────────────────────────────────────────────────────
 [[redirects]]
