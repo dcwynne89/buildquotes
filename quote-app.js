@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    quote-app.js — Consumer site logic for BuildQuotes
    Manages form state, live preview, and PDF download
    ============================================================ */
@@ -74,6 +74,9 @@ function bindEvents() {
 
   // Download
   $("btnDownload").addEventListener("click", downloadQuote);
+
+  // Export .buildquote file
+  $("btnExport").addEventListener("click", exportQuote);
 
   // Listen to all form inputs for live preview
   document.querySelectorAll("input, textarea, select").forEach((el) => {
@@ -336,6 +339,52 @@ async function downloadQuote() {
     btn.disabled = false;
     btn.textContent = "⬇ Download Quote PDF";
   }
+}
+
+// ── Export Quote ──────────────────────────────────────────────
+function exportQuote() {
+  const quoteNum = $("quoteNumber").value || "QTE-001";
+  const exportData = {
+    type: "buildquote",
+    version: 1,
+    exported_at: new Date().toISOString(),
+    data: {
+      from_name:    $("fromName").value,
+      from_email:   $("fromEmail").value,
+      from_street:  $("fromStreet").value,
+      from_city:    $("fromCity").value,
+      from_state:   $("fromState").value,
+      from_phone:   $("fromPhone").value,
+      to_name:      $("toName").value,
+      to_email:     $("toEmail").value,
+      to_street:    $("toStreet").value,
+      to_city:      $("toCity").value,
+      to_state:     $("toState").value,
+      quote_number: quoteNum,
+      quote_date:   $("quoteDate").value,
+      valid_until:  $("validUntil").value,
+      project:      $("projectName").value,
+      currency:     $("currency").value || "$",
+      accent_color: accentColor,
+      line_items: lineItems.filter(i => i.description).map(i => ({
+        description: i.description,
+        quantity:    i.quantity || 1,
+        rate:        i.rate    || 0,
+      })),
+      tax_rate: parseFloat($("taxRate").value)  || 0,
+      discount: parseFloat($("discount").value) || 0,
+      notes:    $("notes").value,
+      terms:    $("terms").value,
+    },
+  };
+  const blob    = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" });
+  const url     = URL.createObjectURL(blob);
+  const link    = document.createElement("a");
+  link.href     = url;
+  link.download = `${quoteNum.replace(/[^a-zA-Z0-9\-_]/g, "-")}.buildquote`;
+  link.click();
+  URL.revokeObjectURL(url);
+  showToast("✓ Exported — import in BuildInvoice to convert to an invoice", "success");
 }
 
 // ── Helpers ───────────────────────────────────────────────────

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -230,8 +230,10 @@
         </div>
       </div>
 
-      <button type="button" class="btn-download" id="btnDownload">⬇ Download Quote PDF</button>
-
+      <div style="display:flex;gap:0.75rem;">
+        <button type="button" class="btn-download" id="btnDownload" style="flex:1;">⬇ Download Quote PDF</button>
+        <button type="button" id="btnExport" style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:var(--radius);padding:0.875rem 1.25rem;font-size:0.875rem;font-weight:600;font-family:inherit;color:var(--text-secondary);cursor:pointer;transition:all 0.2s;white-space:nowrap;" title="Export as .buildquote file to import in BuildInvoice">📤 Export Quote</button>
+      </div>
     </div>
 
     <!-- ── PREVIEW PANEL ── -->
