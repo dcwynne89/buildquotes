@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    styles.css — BuildQuotes design system
    Dark premium theme matching the Build ecosystem
    ============================================================ */
@@ -9,16 +9,16 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:           #0a0b14;
-  --bg-card:      #12131f;
-  --bg-input:     #1a1b2e;
+  --bg:           #080f0a;
+  --bg-card:      #0e1a11;
+  --bg-input:     #142018;
   --border:       rgba(255,255,255,0.08);
-  --border-focus: rgba(79,70,229,0.5);
-  --accent:       #4F46E5;
-  --accent-hover: #6366f1;
-  --text-primary: #f0f0f5;
-  --text-secondary: #a0a0b8;
-  --text-muted:   #5a5a7a;
+  --border-focus: rgba(16,185,129,0.5);
+  --accent:       #10b981;
+  --accent-hover: #34d399;
+  --text-primary: #edf7f1;
+  --text-secondary: #7eac92;
+  --text-muted:   #3d6b52;
   --radius:       12px;
   --radius-sm:    8px;
   --success:      #10b981;
@@ -71,7 +71,7 @@ body {
 .hero-banner {
   text-align: center;
   padding: 2rem 1.5rem 1.5rem;
-  background: radial-gradient(ellipse at 50% 0%, rgba(79,70,229,0.15) 0%, transparent 70%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(16,185,129,0.12) 0%, transparent 70%);
   border-bottom: 1px solid var(--border);
 }
 .hero-banner h1 {
@@ -146,7 +146,7 @@ input, textarea, select {
 input:focus, textarea:focus, select:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(79,70,229,0.15);
+  box-shadow: 0 0 0 3px rgba(16,185,129,0.15);
 }
 input::placeholder, textarea::placeholder { color: var(--text-muted); }
 textarea { resize: vertical; min-height: 70px; }
@@ -222,8 +222,8 @@ input[type="color"] {
 /* ── Totals Display ─────────────────────────────────────────── */
 .totals-display {
   margin: 0 1.25rem 1.25rem;
-  background: rgba(79,70,229,0.05);
-  border: 1px solid rgba(79,70,229,0.15);
+  background: rgba(16,185,129,0.05);
+  border: 1px solid rgba(16,185,129,0.15);
   border-radius: var(--radius-sm);
   padding: 0.875rem 1rem;
 }
@@ -238,7 +238,7 @@ input[type="color"] {
   font-weight: 800;
   font-size: 1rem;
   color: var(--accent);
-  border-top: 1px solid rgba(79,70,229,0.2);
+  border-top: 1px solid rgba(16,185,129,0.2);
   margin-top: 0.4rem;
   padding-top: 0.5rem;
 }
@@ -246,7 +246,7 @@ input[type="color"] {
 /* ── Download Button ─────────────────────────────────────────── */
 .btn-download {
   width: 100%;
-  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  background: linear-gradient(135deg, #059669, var(--accent));
   color: #fff;
   border: none;
   border-radius: var(--radius);
@@ -256,11 +256,11 @@ input[type="color"] {
   font-family: inherit;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 4px 20px rgba(79,70,229,0.3);
+  box-shadow: 0 4px 20px rgba(16,185,129,0.3);
 }
 .btn-download:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgba(79,70,229,0.4);
+  box-shadow: 0 6px 24px rgba(16,185,129,0.4);
 }
 .btn-download:disabled { opacity: 0.6; cursor: not-allowed; }
 
@@ -288,7 +288,7 @@ input[type="color"] {
 .preview-header h3 { font-size: 0.875rem; font-weight: 700; }
 .preview-badge {
   font-size: 0.7rem;
-  background: rgba(79,70,229,0.15);
+  background: rgba(16,185,129,0.15);
   color: var(--accent);
   padding: 0.2rem 0.6rem;
   border-radius: 20px;
