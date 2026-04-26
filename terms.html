@@ -1,9 +1,9 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terms of Service â€” BuildQuotes</title>
+  <title>Terms of Service — BuildQuotes</title>
   <meta name="description" content="BuildQuotes terms of service. Use of this service is provided as-is. Quotes generated are not legal contracts.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://buildquotes.co/terms.html">
@@ -12,8 +12,9 @@
 </head>
 <body>
   <nav class="navbar">
-    <a href="/" class="navbar-brand">ðŸ’¼ BuildQuotes</a>
-    <div class="navbar-links"><a href="/api/docs">API Docs</a><a href="/about.html">About</a></div>
+    <a href="/" class="navbar-brand">?? BuildQuotes</a>
+    <div class="navbar-links" id="siteNav"><a href="/api/docs">API Docs</a><a href="/about.html">About</a></div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
   </nav>
   <main style="max-width:720px;margin:3rem auto;padding:0 1.5rem;">
     <h1 style="font-size:1.8rem;font-weight:800;color:var(--text-primary);margin-bottom:1rem;">Terms of Service</h1>
@@ -27,6 +28,34 @@
     <h2 style="font-size:1.1rem;font-weight:700;color:var(--text-primary);margin:1.5rem 0 0.5rem;">API Usage</h2>
     <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:1rem;">API usage is governed by your RapidAPI subscription plan. Exceeding quota limits will result in throttled requests. Abuse of the free tier may result in key revocation.</p>
   </main>
-  <footer class="site-footer"><p>Â© 2026 BuildQuotes Â· <a href="/privacy.html">Privacy</a> Â· <a href="/terms.html">Terms</a></p></footer>
+  <footer class="site-footer"><p>© 2026 BuildQuotes · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p></footer>
+<script>
+    const navToggle = document.getElementById('navToggle');
+    const siteNav = document.getElementById('siteNav');
+    const headerInner = navToggle ? navToggle.closest('.navbar') : null;
+    function closeNav() {
+      siteNav.classList.remove('open'); navToggle.classList.remove('open');
+      document.body.style.overflow = '';
+      const btn = siteNav.querySelector('.nav-close'); if (btn) btn.remove();
+      setTimeout(() => headerInner.appendChild(siteNav), 300);
+    }
+    if (navToggle && siteNav && headerInner) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = siteNav.classList.contains('open');
+        if (!isOpen) {
+          document.body.appendChild(siteNav);
+          const closeBtn = document.createElement('button');
+          closeBtn.className = 'nav-close';
+          closeBtn.setAttribute('aria-label', 'Close menu');
+          closeBtn.innerHTML = '&#x2715;';
+          closeBtn.addEventListener('click', closeNav);
+          siteNav.prepend(closeBtn);
+          requestAnimationFrame(() => { siteNav.classList.add('open'); navToggle.classList.add('open'); });
+          document.body.style.overflow = 'hidden';
+        } else { closeNav(); }
+      });
+      siteNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+    }
+  </script>
 </body>
 </html>
