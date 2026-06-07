@@ -17,6 +17,34 @@
 
   waitForAuth(function () { init(); });
 
+  /* ── Autocomplete CSS ─────────────────────────────────────── */
+  var acStyle = document.createElement("style");
+  acStyle.textContent = `
+    .bqs-ac-wrap { position: relative; }
+    .bqs-ac-list {
+      position: absolute; top: 100%; left: 0; right: 0; z-index: 500;
+      background: #1a1d2e; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px; margin-top: 4px; max-height: 200px;
+      overflow-y: auto; display: none;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .bqs-ac-list.open { display: block; }
+    .bqs-ac-item {
+      padding: 10px 14px; cursor: pointer; transition: background 0.12s;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .bqs-ac-item:last-child { border-bottom: none; }
+    .bqs-ac-item:hover, .bqs-ac-item.active { background: rgba(108,99,255,0.1); }
+    .bqs-ac-name { font-size: 0.9rem; font-weight: 600; color: rgba(255,255,255,0.85); }
+    .bqs-ac-detail { font-size: 0.75rem; color: rgba(255,255,255,0.35); margin-top: 1px; }
+    .bqs-ac-badge {
+      display: inline-block; font-size: 0.65rem; padding: 1px 6px;
+      background: rgba(108,99,255,0.15); color: #a5b4fc;
+      border-radius: 4px; margin-left: 6px; vertical-align: middle;
+    }
+  `;
+  document.head.appendChild(acStyle);
+
   /* ── Read form state from DOM ─────────────────────────────── */
 
   function readFormData() {
@@ -143,6 +171,7 @@
   function init() {
     injectSaveButton();
     injectSavedPanel();
+    initClientAutocomplete();
 
     BuildAuth.onAuthChange(function (user) {
       var panel = document.getElementById("bqs-saved-panel");
@@ -311,6 +340,111 @@
     // Scroll to form
     var form = document.querySelector(".form-card, .quote-form, #quoteForm, main");
     if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  /* ── Client Autocomplete ───────────────────────────────────── */
+
+  var cachedClients = [];
+  var acList = null;
+  var acActiveIdx = -1;
+
+  function initClientAutocomplete() {
+    var nameInput = document.getElementById("toName");
+    if (!nameInput) return;
+
+    // Wrap input for positioning
+    var parent = nameInput.parentElement;
+    parent.style.position = "relative";
+
+    // Create dropdown
+    acList = document.createElement("div");
+    acList.className = "bqs-ac-list";
+    acList.id = "bqs-ac-list";
+    parent.appendChild(acList);
+
+    nameInput.addEventListener("input", function () {
+      if (!BuildAuth.getUser()) return;
+      var query = nameInput.value.trim().toLowerCase();
+      if (query.length < 1) { closeAc(); return; }
+      showMatches(query);
+    });
+
+    nameInput.addEventListener("focus", function () {
+      if (!BuildAuth.getUser()) return;
+      var query = nameInput.value.trim().toLowerCase();
+      if (query.length >= 1) showMatches(query);
+    });
+
+    nameInput.addEventListener("keydown", function (e) {
+      if (!acList.classList.contains("open")) return;
+      var items = acList.querySelectorAll(".bqs-ac-item");
+      if (e.key === "ArrowDown") { e.preventDefault(); acActiveIdx = Math.min(acActiveIdx + 1, items.length - 1); highlightAc(items); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); acActiveIdx = Math.max(acActiveIdx - 1, 0); highlightAc(items); }
+      else if (e.key === "Enter" && acActiveIdx >= 0) { e.preventDefault(); items[acActiveIdx]?.click(); }
+      else if (e.key === "Escape") { closeAc(); }
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!acList.contains(e.target) && e.target !== nameInput) closeAc();
+    });
+
+    // Load clients when user signs in
+    BuildAuth.onAuthChange(function (user) {
+      if (user) refreshClients();
+      else { cachedClients = []; closeAc(); }
+    });
+  }
+
+  async function refreshClients() {
+    cachedClients = await BuildAuth.loadClients();
+  }
+
+  function showMatches(query) {
+    var matches = cachedClients.filter(function (c) {
+      return (c.name || "").toLowerCase().indexOf(query) !== -1;
+    }).slice(0, 6);
+
+    if (matches.length === 0) { closeAc(); return; }
+
+    acActiveIdx = -1;
+    acList.innerHTML = "";
+    matches.forEach(function (client, idx) {
+      var item = document.createElement("div");
+      item.className = "bqs-ac-item";
+      var products = (client.usedIn || []).map(function (p) {
+        return '<span class="bqs-ac-badge">' + escHtml(p) + '</span>';
+      }).join("");
+      item.innerHTML =
+        '<div class="bqs-ac-name">' + escHtml(client.name) + products + '</div>' +
+        (client.email ? '<div class="bqs-ac-detail">' + escHtml(client.email) + (client.address ? ' · ' + escHtml(client.address) : '') + '</div>' : '');
+
+      item.addEventListener("click", function () { selectClient(client); });
+      acList.appendChild(item);
+    });
+    acList.classList.add("open");
+  }
+
+  function selectClient(client) {
+    setVal("toName", client.name);
+    if (client.email) setVal("toEmail", client.email);
+    if (client.address) {
+      var parts = client.address.split(", ");
+      if (parts[0]) setVal("toStreet", parts[0]);
+      if (parts[1]) setVal("toCity", parts[1]);
+      if (parts[2]) setVal("toState", parts[2]);
+    }
+    closeAc();
+  }
+
+  function highlightAc(items) {
+    items.forEach(function (it, i) {
+      it.classList.toggle("active", i === acActiveIdx);
+    });
+  }
+
+  function closeAc() {
+    if (acList) { acList.classList.remove("open"); acList.innerHTML = ""; }
+    acActiveIdx = -1;
   }
 
   /* ── Helpers ──────────────────────────────────────────────── */
